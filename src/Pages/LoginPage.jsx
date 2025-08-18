@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import logo from "../assets/tlogo.png";
 import bgImage from "../assets/bg.jpg";
+import PrimaryButton from "../Components/PrimaryButton";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +22,7 @@ const LoginPage = () => {
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "fixed",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
         }}
@@ -31,12 +33,13 @@ const LoginPage = () => {
 
       {/* Logo for desktop / Back for mobile */}
       <div className="absolute top-2 left-6 lg:left-16 z-20">
-        {/* Mobile view: Back button */}
+        {/* Mobile view: Back button with icon */}
         <button
           className="text-white text-lg mt-10 font-bold flex items-center gap-1 md:hidden"
-          onClick={() => navigate("/landing")}
+          onClick={() => navigate("/")}
         >
-          ← Back
+          <FaArrowLeft className="w-4 h-4" />
+          Back
         </button>
 
         {/* Desktop view: Logo */}
@@ -47,10 +50,20 @@ const LoginPage = () => {
         />
       </div>
 
+      {/* Primary Button - Top Right (hidden on mobile) */}
+      <div className="absolute top-6 right-6 lg:right-16 z-20 hidden md:block">
+        <button
+            onClick={() => navigate("/")}
+            className="flex text-xl items-center bg-[#14FFEC] cursor-pointer text-black text-[1rem] font-bold py-2 px-4 md:px-6 rounded-lg hover:scale-105 transition-all duration-300"
+          >
+            Home
+          </button>
+      </div>
+
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex flex-col md:flex-row items-center justify-center px-6 lg:px-20">
+      <div className="relative z-10 min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 lg:px-20">
         {/* Left Column - Desktop only */}
-        <div className="hidden md:flex flex-col justify-center w-1/2 p-6 lg:p-12 text-white">
+        <div className="hidden md:flex flex-col justify-start w-1/2 p-6 lg:p-5 text-white">
           <h1 className="text-5xl lg:text-7xl italic font-bold mb-4 leading-tight">
             Welcome Back
           </h1>
@@ -60,8 +73,8 @@ const LoginPage = () => {
         </div>
 
         {/* Right Column - Login Form */}
-        <div className="w-full sm:w-[90%] md:w-1/2 max-w-md bg-black/30 rounded-xl p-8 lg:p-12 border border-gray-700 mx-auto">
-          <h2 className="text-3xl text-center font-bold mb-4 text-white">
+        <div className="w-full md:w-1/2 lg:w-[40%] max-w-lg bg-black/30 rounded-xl p-6 md:p-10 lg:p-12 border border-gray-700">
+          <h2 className="text-3xl lg:text-4xl text-center font-bold mb-4 text-white">
             Log in
           </h2>
 

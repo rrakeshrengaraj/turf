@@ -1,95 +1,124 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-scroll';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/tlogo.png';
 
 const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'rules', label: 'Rules' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
   const handleLoginClick = () => {
-    navigate("/login");
+    navigate('/login');
+    setMobileMenuOpen(false);
   };
-  const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Check if path matches nav item
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
-
   return (
-    <header className={`fixed w-full py-4 px-4 z-50 transition-all duration-300 ${scrolled ? 'bg-[#323232] shadow-md' : 'bg-transparent'}`}>
+    <header className={`fixed w-full py-4 px-4 z-50 transition-all duration-300 ${scrolled ? 'bg-[#393E46] shadow-md' : 'bg-transparent'}`}>
       <nav className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-         <NavLink to="/" className="flex items-start">
+        <Link 
+          to="home" 
+          smooth={true} 
+          duration={500} 
+          offset={-80}
+          className="flex items-start z-50 cursor-pointer"
+          onClick={closeMobileMenu}
+        >
           <img 
             src={logo} 
             alt="Garuda Sports Turf Logo"
-            className="h-26 w-26" // Adjust size as needed
+            className="h-16 w-16 md:h-20 md:w-20" 
           />
-        </NavLink>
+        </Link>
 
-        {/* Navigation */}
-        <div className="flex items-center text-xl space-x-8">
-          <div className="hidden md:flex space-x-8">
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => 
-                `font-medium ${isActive ? 'text-[#14FFEC]' : scrolled ? 'text-white hover:text-[#14FFEC]' : 'text-white hover:text-[#14FFEC]'}`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink 
-              to="/about" 
-              className={({ isActive }) => 
-                `font-medium ${isActive ? 'text-[#14FFEC]' : scrolled ? 'text-white hover:text-[#14FFEC]' : 'text-white hover:text-[#14FFEC]'}`
-              }
-            >
-              About
-            </NavLink>
-            <NavLink 
-              to="/rules" 
-              className={({ isActive }) => 
-                `font-medium ${isActive ? 'text-[#14FFEC]' : scrolled ? 'text-white hover:text-[#14FFEC]' : 'text-white hover:text-[#14FFEC]'}`
-              }
-            >
-              Rules
-            </NavLink>
-            <NavLink 
-              to="/gallery" 
-              className={({ isActive }) => 
-                `font-medium ${isActive ? 'text-[#14FFEC]' : scrolled ? 'text-white hover:text-[#14FFEC]' : 'text-white hover:text-[#14FFEC]'}`
-              }
-            >
-              Gallery
-            </NavLink>
-            <NavLink 
-              to="/contact" 
-              className={({ isActive }) => 
-                `font-medium ${isActive ? 'text-[#14FFEC]' : scrolled ? 'text-white hover:text-[#14FFEC]' : 'text-white hover:text-[#14FFEC]'}`
-              }
-            >
-              Contact
-            </NavLink>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex text-xl items-center space-x-6">
+          <div className="hidden md:flex space-x-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.id}
+                to={item.id}
+                smooth={true}
+                duration={500}
+                offset={-80}
+                className="font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
+                activeClass="!text-[#14FFEC] font-semibold"
+                spy={true}
+                hashSpy={true}
+                isDynamic={true}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
           
-          {/* Login Button */}
-          <button onClick={handleLoginClick} className="flex items-center mr-[-70px] bg-[#14FFEC] cursor-pointer hover:bg-[#14FFEC] text-black font-medium py-2 px-6 rounded-lg transition-colors duration-300 hover:scale-105">
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
+          <button
+            onClick={handleLoginClick}
+            className="flex text-xl items-center bg-[#14FFEC] cursor-pointer text-black text-sm font-bold py-2 px-4 md:px-6 rounded-lg hover:scale-105 transition-all duration-300"
+          >
+            <svg className="w-4 h-4 md:w-5 md:h-5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            Login
+          </button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className="md:hidden text-white z-50 focus:outline-none"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? (
+            <FaTimes className="h-6 w-6" />
+          ) : (
+            <FaBars className="h-6 w-6" />
+          )}
+        </button>
+
+        {/* Mobile Menu */}
+        <div className={`fixed inset-0 bg-[#393E46] z-40 flex flex-col items-center justify-center space-y-8 transition-all duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              to={item.id}
+              smooth={true}
+              duration={500}
+              offset={-80}
+              className="text-2xl font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
+              activeClass="!text-[#14FFEC] font-semibold"
+              spy={true}
+              hashSpy={true}
+              isDynamic={true}
+              onClick={closeMobileMenu}
+            >
+              {item.label}
+            </Link>
+          ))}
+          
+          <button
+            onClick={handleLoginClick}
+            className="flex items-center bg-[#14FFEC] text-black text-lg font-bold py-3 px-8 rounded-lg hover:scale-105 transition-all duration-300 mt-4"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
             Login
