@@ -1,9 +1,13 @@
+// After login
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import logo from "../assets/tlogo.png";
-import bgImage from "../assets/bg.jpg";
+import bgImage from "../assets/bg.jpg"; // Desktop image
+import mobileBgImage from "../assets/mbg.jpg"; // Mobile image
 import PrimaryButton from "../Components/PrimaryButton";
+import Navbar2 from "../Components/Navbar2";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -16,50 +20,32 @@ const LoginPage = () => {
 
   return (
     <div className="relative min-h-screen">
-      {/* Background */}
+      <Navbar2  />
+      {/* Background Images */}
+      {/* Default Desktop Background (shown on all screens) */}
       <div
         className="absolute inset-0 brightness-50"
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "fixed",
-          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+      ></div>
+      
+      {/* Mobile Background Override (hidden on desktop) */}
+      <div
+        className="absolute inset-0 brightness-50 md:hidden"
+        style={{
+          backgroundImage: `url(${mobileBgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           backgroundAttachment: "fixed",
         }}
       ></div>
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30 z-0"></div>
-
-      {/* Logo for desktop / Back for mobile */}
-      <div className="absolute top-2 left-6 lg:left-16 z-20">
-        {/* Mobile view: Back button with icon */}
-        <button
-          className="text-white text-lg mt-10 font-bold flex items-center gap-1 md:hidden"
-          onClick={() => navigate("/")}
-        >
-          <FaArrowLeft className="w-4 h-4" />
-          Back
-        </button>
-
-        {/* Desktop view: Logo */}
-        <img
-          src={logo}
-          alt="Garuda Sports Turf Logo"
-          className="h-20 w-auto hidden md:block"
-        />
-      </div>
-
-      {/* Primary Button - Top Right (hidden on mobile) */}
-      <div className="absolute top-6 right-6 lg:right-16 z-20 hidden md:block">
-        <button
-            onClick={() => navigate("/")}
-            className="flex text-xl items-center bg-[#14FFEC] cursor-pointer text-black text-[1rem] font-bold py-2 px-4 md:px-6 rounded-lg hover:scale-105 transition-all duration-300"
-          >
-            Home
-          </button>
-      </div>
-
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 lg:px-20">
         {/* Left Column - Desktop only */}

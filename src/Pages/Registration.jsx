@@ -5,6 +5,7 @@ import Football from "../assets/football.png";
 import Cricket from "../assets/cricket_ball.png";
 import logo from "../assets/tlogo.png";
 import { FaArrowLeft } from "react-icons/fa";
+import Navbar2 from "../Components/Navbar2";
 
 export default function Registration() {
   const navigate = useNavigate();
@@ -64,33 +65,9 @@ export default function Registration() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#222831]">
-      <div className="absolute top-2 left-6 lg:left-16 z-20" >
-        {/* Mobile view: Back button with icon */}
-        <button
-          className="text-white text-lg mt-10 font-bold flex items-center gap-2 md:hidden"
-          onClick={() => navigate(-1)} // Go back to previous page
-        >
-          <FaArrowLeft className="w-4 h-4" />
-          Back
-        </button>
+      <Navbar2 />
 
-        {/* Desktop view: Logo */}
-        <img
-          src={logo}
-          alt="Garuda Sports Turf Logo"
-          className="h-20 w-auto hidden md:block"
-        />
-      </div>
-      <div className="absolute top-6 right-6 lg:right-16 z-20 hidden md:block">
-        <button
-          onClick={() => navigate("/")}
-          className="flex text-xl items-center bg-[#14FFEC] cursor-pointer text-black text-[1rem] font-bold py-2 px-4 md:px-6 rounded-lg hover:scale-105 transition-all duration-300"
-        >
-          Home
-        </button>
-      </div>
-
-      <main className="flex-grow flex items-center  justify-center p-4 md:p-8">
+      <main className="flex-grow flex items-center  justify-center p-4 md:p-8 mt-25">
         <div className="w-full max-w-2xl bg-black/30 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-gray-700 shadow-lg">
           <h1 className="text-center text-3xl md:text-4xl text-[#14FFEC] mb-8 font-bold italic">
             Book Your Game
@@ -100,13 +77,13 @@ export default function Registration() {
             {/* Date Selection */}
             <div>
               <h2 className="font-bold mb-4  text-xl text-white">Select Date</h2>
-              <div className="grid grid-cols-7  gap-2">
+              <div className="grid grid-cols-7 gap-2">
                 {dates.map((d) => (
                   <button
                     type="button"
                     key={d.date}
                     onClick={() => setSelectedDate(d.date)}
-                    className={`flex flex-col items-center  p-2 rounded-lg transition-all ${
+                    className={`flex flex-col cursor-pointer items-center  p-2 rounded-lg transition-all ${
                       selectedDate === d.date
                         ? "bg-[#14FFEC] text-gray-900 font-bold shadow-lg"
                         : "bg-gray-800 text-white hover:bg-gray-700"
@@ -130,7 +107,7 @@ export default function Registration() {
                     type="button"
                     key={t}
                     onClick={() => toggleTime(t)}
-                    className={`py-3 px-4 rounded-lg  transition-all ${
+                    className={`py-3 px-4 rounded-lg cursor-pointer transition-all ${
                       selectedTimes.includes(t)
                         ? "bg-[#14FFEC] text-gray-900  font-bold"
                         : "bg-gray-800 text-white hover:bg-gray-700"
@@ -153,7 +130,7 @@ export default function Registration() {
                     type="button"
                     key={sport.name}
                     onClick={() => setSelectedSport(sport.name)}
-                    className={`flex-1 flex items-center justify-center gap-3 p-4 rounded-lg border transition-all min-w-[120px] ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-3 p-4 rounded-lg border transition-all min-w-[120px] ${
                       selectedSport === sport.name
                         ? "border-[#14FFEC] bg-[#14FFEC]/20"
                         : "border-gray-700 hover:border-[#14FFEC]"
@@ -178,7 +155,7 @@ export default function Registration() {
               <div className="flex items-center border border-gray-700 rounded-lg w-fit overflow-hidden bg-gray-800">
                 <button
                   type="button"
-                  className="px-5 py-3 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-white text-xl"
+                  className="px-5 py-3 cursor-pointer bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-white text-xl"
                   onClick={decrement}
                   disabled={players <= minPlayers}
                 >
@@ -189,7 +166,7 @@ export default function Registration() {
                 </span>
                 <button
                   type="button"
-                  className="px-5 py-3 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-white text-xl"
+                  className="px-5 py-3 bg-gray-700 cursor-pointer hover:bg-gray-600 disabled:opacity-50 text-white text-xl"
                   onClick={increment}
                   disabled={players >= maxPlayers}
                 >

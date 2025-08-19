@@ -10,8 +10,9 @@ const ContactPage = () => {
   return (
     <section
       id="contact"
+      
     >
-      <div className="min-h-screen flex flex-col bg-[#222831]">
+      <div className="py-8 flex flex-col bg-[#222831]">
         <div className="flex-1 py-18 sm:py-15">
           <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
             {/* Title Section */}
@@ -91,8 +92,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Address</h3>
-                      <p>123 Sports Avenue, Turf City</p>
-                      <p>Bangalore, Karnataka 560001</p>
+                      <p>Near Pandiyan Schoo, Jeevanagar 1st Street</p>
+                      <p>Jaihindpuram, Madurai-625011 </p>
                     </div>
                   </div>
 
@@ -102,8 +103,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Phone</h3>
-                      <p>+91 98765 43210</p>
-                      <p>+91 80 2345 6789</p>
+                      <p>+91 88700 83033</p>
+                      
                     </div>
                   </div>
 
@@ -113,8 +114,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg">Email</h3>
-                      <p>info@garudaturf.com</p>
-                      <p>bookings@garudaturf.com</p>
+                      <p>info@turfxl.com</p>
+                      <p>bookings@turfxl.com</p>
                     </div>
                   </div>
 

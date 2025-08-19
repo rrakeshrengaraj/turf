@@ -9,7 +9,7 @@ const Footer = () => {
     { id: "about", label: "About" },
     { id: "gallery", label: "Gallery" },
     { id: "rules", label: "Rules" },
-    { id: "contact", label: "Contact" } // Changed from /booking to contact section
+    { id: "contact", label: "Contact" }
   ];
 
   const socialMedia = [
@@ -25,8 +25,8 @@ const Footer = () => {
           
           {/* About Section */}
           <div className="md:col-span-2">
-            <h3 className="text-[#14FFEC] text-lg font-bold mb-4">GARUDA TURF</h3>
-            <p className="text-gray-400">
+            <h3 className="text-[#14FFEC] text-lg font-bold mb-4">TURF XL</h3>
+            <p className="text-gray-400 w-150">
               Premier sports destination offering top-class facilities for football, 
               cricket and other outdoor games with international standard turfs.
             </p>
@@ -57,22 +57,22 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li className="flex items-center">
                 <HiLocationMarker className="w-5 h-5 mr-2 text-[#14FFEC]" />
-                123 Turf Road, Sports City
+                Jaihindpuram, Madurai-625011
               </li>
               <li className="flex items-center">
                 <HiPhone className="w-5 h-5 mr-2 text-[#14FFEC]" />
-                +91 98765 43210
+                +91 88700 83033 
               </li>
               <li className="flex items-center">
                 <HiMail className="w-5 h-5 mr-2 text-[#14FFEC]" />
-                info@garudaturf.com
+                info@turfxl.com
               </li>
             </ul>
           </div>
         </div>
 
         {/* Social Media & Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-center items-center gap-6">
+        <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col items-center gap-4">
           {/* Social Media Icons */}
           <div className="flex space-x-6">
             {socialMedia.map((social) => (
@@ -90,8 +90,19 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <div className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Garuda Turf. All rights reserved.
+          <div className="text-center text-gray-400 text-sm">
+            <p>© {new Date().getFullYear()} HashNet. All rights reserved.</p>
+            <p>
+              Designed and Developed By{" "}
+              <a 
+                href="https://www.hashnett.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-[#14FFEC] hover:underline"
+              >
+                Hashnett
+              </a>
+            </p>
           </div>
         </div>
       </div>

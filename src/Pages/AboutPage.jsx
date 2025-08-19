@@ -16,15 +16,14 @@ const AboutPage = () => {
             One Turf. Endless Matches.
           </p>
           <p className="text-gray-300 text-base text-justify sm:text-lg leading-relaxed mb-4">
-            Garuda Turf is your premier sports destination, offering top-class
-            facilities for football, cricket, and other outdoor games. Our
-            turf is designed to meet international standards, ensuring players
-            enjoy the best playing experience in a safe, vibrant, and
-            competitive environment.
+            “Welcome to Turf XL, where your game comes first. We’ve introduced
+            an easy online booking system so you can reserve your slot in
+            seconds, without the hassle of calls or confusion. Just book, show
+            up, and play—we’ll take care of the rest.”
           </p>
           <p className="text-gray-300 text-base sm:text-lg text-justify leading-relaxed mb-4">
-            Whether you are a professional athlete or a group of friends
-            looking for some fun, Garuda Turf provides flexible booking slots,
+            Whether you are a professional athlete or a group of friends looking
+            for some fun, Turf XL provides flexible booking slots,
             night-time lighting, and premium quality turf for an unbeatable
             sporting experience.
           </p>

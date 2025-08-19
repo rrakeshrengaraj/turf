@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/tlogo.png";
-import { FaUser } from "react-icons/fa";
 
-const Header = () => {
+const Navbar3 = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -16,12 +15,15 @@ const Header = () => {
     { id: "rules", label: "Rules" },
     { id: "gallery", label: "Gallery" },
     { id: "contact", label: "Contact" },
+    { id: "activity", label: "Your Activity", isPageLink: true },
   ];
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const closeMobileMenu = () => setMobileMenuOpen(false);
-  const handleLoginClick = () => {
-    navigate("/login");
+  
+  const handleLogout = () => {
+    // Add your logout logic here (clear tokens, etc.)
+    navigate("/login"); // Redirect to login page after logout
     setMobileMenuOpen(false);
   };
 
@@ -57,30 +59,40 @@ const Header = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex text-xl items-center space-x-6">
           <div className="hidden md:flex space-x-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                to={item.id}
-                smooth={true}
-                duration={500}
-                offset={-80}
-                className="font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
-                activeClass="!text-[#14FFEC] font-semibold"
-                spy={true}
-                hashSpy={true}
-                isDynamic={true}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.isPageLink ? (
+                <button
+                  key={item.id}
+                  onClick={() => navigate("/activity")}
+                  className="font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <Link
+                  key={item.id}
+                  to={item.id}
+                  smooth={true}
+                  duration={500}
+                  offset={-80}
+                  className="font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
+                  activeClass="!text-[#14FFEC] font-semibold"
+                  spy={true}
+                  hashSpy={true}
+                  isDynamic={true}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </div>
 
           <button
-            onClick={handleLoginClick}
+            onClick={handleLogout}
             className="flex items-center bg-[#14FFEC] cursor-pointer text-black text-xl font-bold py-1 px-4 md:px-6 rounded-lg hover:scale-105 transition-all duration-300"
           >
-            <FaUser className="w-3 h-3 md:w-4 md:h-4 mr-1.5" />
-            Login
+            <FaSignOutAlt className="w-3 h-3 md:w-4 md:h-4 mr-1.5" />
+            Logout
           </button>
         </div>
 
@@ -103,42 +115,40 @@ const Header = () => {
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          {navItems.map((item) => (
-            <Link
-              key={item.id}
-              to={item.id}
-              smooth={true}
-              duration={500}
-              offset={-80}
-              className="text-2xl font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
-              activeClass="!text-[#14FFEC] font-semibold"
-              spy={true}
-              hashSpy={true}
-              isDynamic={true}
-              onClick={closeMobileMenu}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.isPageLink ? (
+              <button
+                key={item.id}
+                onClick={() => navigate("/activity")}
+                className="text-2xl font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
+              >
+                {item.label}
+              </button>
+            ) : (
+              <Link
+                key={item.id}
+                to={item.id}
+                smooth={true}
+                duration={500}
+                offset={-80}
+                className="text-2xl font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
+                activeClass="!text-[#14FFEC] font-semibold"
+                spy={true}
+                hashSpy={true}
+                isDynamic={true}
+                onClick={closeMobileMenu}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
 
           <button
-            onClick={handleLoginClick}
+            onClick={handleLogout}
             className="flex items-center bg-[#14FFEC] text-black text-lg font-bold py-3 px-8 rounded-lg hover:scale-105 transition-all duration-300 mt-4"
           >
-            <svg
-              className="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
-            Login
+            <FaSignOutAlt className="w-5 h-5 mr-2" />
+            Logout
           </button>
         </div>
       </nav>
@@ -146,4 +156,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar3;

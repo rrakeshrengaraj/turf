@@ -40,7 +40,7 @@ const RulesPage = () => {
   return (
     <section
       id="rules"
-      className="min-h-screen py-5 bg-[#222831] flex items-center"
+      className="min-h-screen py-15 bg-[#222831] flex items-center"
     >
       <div className="max-w-7xl w-full mx-auto px-4 md:px-8 lg:px-16">
         {/* Title Section */}

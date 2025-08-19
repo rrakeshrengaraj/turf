@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
+import Navbar2 from './Components/Navbar2';
 import LandingPage from './Pages/LandingPage';
 import AboutPage from './Pages/AboutPage';
 import RulesPage from './Pages/RulesPage';

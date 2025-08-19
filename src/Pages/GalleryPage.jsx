@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const images = [
-  "src/assets/1.jpg",
-  "src/assets/2.avif",
-  "src/assets/3.jpg",
-  "src/assets/4.jpg",
-  "src/assets/5.jpg",
-  "src/assets/6.avif",
+  "src/assets/g1.jpg",
+  "src/assets/g2.jpg",
+  "src/assets/g3.jpg",
+  "src/assets/g4.jpg",
+  "src/assets/g5.jpg",
+  "src/assets/g6.jpg",
+  "src/assets/g7.jpg",
 ];
 
 export default function GalleryPage() {
@@ -84,14 +85,15 @@ export default function GalleryPage() {
           {/* Previous Button */}
           <button
             onClick={prev}
-            className="flex items-center justify-center text-[#14FFEC] hover:scale-110 transition-transform h-16 w-10 z-20"
+            className="flex items-center cursor-pointer justify-center text-[#14FFEC] hover:scale-110 transition-transform h-16 w-10 z-20"
             aria-label="Previous"
           >
             <span className="text-3xl md:text-4xl">&#10094;</span>
           </button>
 
           {/* Image Slider */}
-          <div className="relative w-full h-[60vh] max-h-[500px] flex items-center mx-4">
+          <div className="relative w-full h-[45vh] max-h-[500px] sm:h-[60vh] sm:max-h-[500px] flex items-center mx-4">
+
             {/* Glow Background */}
             <div className="absolute -z-10 w-full h-full bg-[#14FFEC33] blur-3xl rounded-lg opacity-15" />
             <div
@@ -126,7 +128,7 @@ export default function GalleryPage() {
           {/* Next Button */}
           <button
             onClick={next}
-            className="flex items-center justify-center text-[#14FFEC] hover:scale-110 transition-transform h-16 w-10 z-20"
+            className="flex items-center cursor-pointer justify-center text-[#14FFEC] hover:scale-110 transition-transform h-16 w-10 z-20"
             aria-label="Next"
           >
             <span className="text-3xl md:text-4xl">&#10095;</span>
