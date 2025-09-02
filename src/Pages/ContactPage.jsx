@@ -72,7 +72,7 @@ const ContactPage = () => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-2 px-4 bg-[#14FFEC] text-[#222831] font-bold rounded hover:bg-opacity-90 transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-2 px-4 bg-[#14FFEC] cursor-pointer text-[#222831] font-bold rounded hover:bg-opacity-90 transition-colors flex items-center justify-center gap-2"
                   >
                     <FaPaperPlane />
                     Send Message

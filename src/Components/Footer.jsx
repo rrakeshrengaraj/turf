@@ -26,7 +26,7 @@ const Footer = () => {
           {/* About Section */}
           <div className="md:col-span-2">
             <h3 className="text-[#14FFEC] text-lg font-bold mb-4">TURF XL</h3>
-            <p className="text-gray-400 w-150">
+            <p className="text-gray-400">
               Premier sports destination offering top-class facilities for football, 
               cricket and other outdoor games with international standard turfs.
             </p>

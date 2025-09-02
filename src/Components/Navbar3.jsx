@@ -1,12 +1,14 @@
+// After Login
+
+
 import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
-import { FaBars, FaTimes, FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/tlogo.png";
 
 const Navbar3 = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const navItems = [
@@ -18,13 +20,9 @@ const Navbar3 = () => {
     { id: "activity", label: "Your Activity", isPageLink: true },
   ];
 
-  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
-  const closeMobileMenu = () => setMobileMenuOpen(false);
-  
   const handleLogout = () => {
     // Add your logout logic here (clear tokens, etc.)
     navigate("/login"); // Redirect to login page after logout
-    setMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -47,7 +45,6 @@ const Navbar3 = () => {
           duration={500}
           offset={-80}
           className="flex items-start z-50 cursor-pointer"
-          onClick={closeMobileMenu}
         >
           <img
             src={logo}
@@ -89,65 +86,27 @@ const Navbar3 = () => {
 
           <button
             onClick={handleLogout}
-            className="flex items-center bg-[#14FFEC] cursor-pointer text-black text-xl font-bold py-1 px-4 md:px-6 rounded-lg hover:scale-105 transition-all duration-300"
+            className="flex items-center bg-red-600 cursor-pointer text-black text-xl font-bold py-1 px-4 md:px-6 rounded-lg hover:scale-105 transition-all duration-300"
           >
             <FaSignOutAlt className="w-3 h-3 md:w-4 md:h-4 mr-1.5" />
             Logout
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white z-50 focus:outline-none"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? (
-            <FaTimes className="h-6 w-6" />
-          ) : (
-            <FaBars className="h-6 w-6" />
-          )}
-        </button>
-
-        {/* Mobile Menu */}
-        <div
-          className={`fixed inset-0 bg-[#393E46] z-40 flex flex-col items-center justify-center space-y-8 transition-all duration-300 ease-in-out transform ${
-            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          {navItems.map((item) =>
-            item.isPageLink ? (
-              <button
-                key={item.id}
-                onClick={() => navigate("/activity")}
-                className="text-2xl font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
-              >
-                {item.label}
-              </button>
-            ) : (
-              <Link
-                key={item.id}
-                to={item.id}
-                smooth={true}
-                duration={500}
-                offset={-80}
-                className="text-2xl font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
-                activeClass="!text-[#14FFEC] font-semibold"
-                spy={true}
-                hashSpy={true}
-                isDynamic={true}
-                onClick={closeMobileMenu}
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-
+        {/* Mobile Navigation - Only shows Your Activity and Logout */}
+        <div className="md:hidden flex items-center space-x-4">
+          <button
+            onClick={() => navigate("/activity")}
+            className="text-sm font-medium text-white hover:text-[#14FFEC] cursor-pointer transition-colors duration-200"
+          >
+            Your Activity
+          </button>
+          
           <button
             onClick={handleLogout}
-            className="flex items-center bg-[#14FFEC] text-black text-lg font-bold py-3 px-8 rounded-lg hover:scale-105 transition-all duration-300 mt-4"
+            className="flex items-center bg-red-600 cursor-pointer text-black text-sm font-bold py-1 px-3 rounded-lg hover:scale-105 transition-all duration-300"
           >
-            <FaSignOutAlt className="w-5 h-5 mr-2" />
+            <FaSignOutAlt className="w-3 h-3 mr-1" />
             Logout
           </button>
         </div>

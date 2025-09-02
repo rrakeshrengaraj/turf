@@ -50,16 +50,16 @@ const LandingPage = () => {
           <p className="text-lg md:text-2xl italic text-[#14FFEC] mb-8">
             Your turf, your time—just a click away.  
           </p>
-          <Link
+          {/* <Link
             to="rules"
             smooth={true}
             duration={500}
             className="inline-block"
-          >
+          > */}
             <PrimaryButton className="px-6 py-3 text-lg" onClick={() => navigate('/registration')}>
               Book Now
             </PrimaryButton>
-          </Link>
+          {/* </Link> */}
         </div>
       </section>
     </div>
