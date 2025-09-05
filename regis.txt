@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../Components/PrimaryButton";
 import Football from "../assets/football.png";
 import Cricket from "../assets/cricket_ball.png";
+import logo from "../assets/tlogo.png";
+import { FaArrowLeft } from "react-icons/fa";
 import Navbar2 from "../Components/Navbar2";
-import BookingSuccess from "../Components/BookingSuccess";
-import BookingError from "../Components/BookingError"; 
-import PaymentSuccess from "../Components/PaymentSuccess";
-import PaymentErrorModal from "../Components/PaymentError";// import popup
-import PaymentSuccessModal from "../Components/PaymentSuccess";
-import LoginSuccessModal from "../Components/LoginSuccess";
-import LoginFailedModal from "../Components/LoginFailed";
-import SignupSuccessModal from "../Components/SignupSuccess";
-import SignupFailedModal from "../Components/SignupFailed";
 
 export default function Registration() {
+  const navigate = useNavigate();
   const accentColor = "#14FFEC";
 
   const dates = [
@@ -44,7 +39,6 @@ export default function Registration() {
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [selectedSport, setSelectedSport] = useState("Football");
   const [players, setPlayers] = useState(1);
-  const [showPopup, setShowPopup] = useState(false); // 🔹 popup visibility
 
   const minPlayers = 1;
   const maxPlayers = 12;
@@ -60,41 +54,36 @@ export default function Registration() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
-
     console.log({
       date: selectedDate,
       times: selectedTimes,
       sport: selectedSport,
       players,
     });
-
-    // Show success popup
-    setShowPopup({ visible: true });
+    navigate("/confirmation");
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#222831]">
       <Navbar2 />
 
-      <main className="flex-grow flex items-center justify-center p-4 md:p-8 mt-25">
+      <main className="flex-grow flex items-center  justify-center p-4 md:p-8 mt-25">
         <div className="w-full max-w-2xl bg-black/30 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-gray-700 shadow-lg">
           <h1 className="text-center text-3xl md:text-4xl text-[#14FFEC] mb-8 font-bold italic">
             Book Your Game
           </h1>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-8 " >
             {/* Date Selection */}
             <div>
-              <h2 className="font-bold mb-4 text-xl text-white">Select Date</h2>
+              <h2 className="font-bold mb-4  text-xl text-white">Select Date</h2>
               <div className="grid grid-cols-7 gap-2">
                 {dates.map((d) => (
                   <button
                     type="button"
                     key={d.date}
                     onClick={() => setSelectedDate(d.date)}
-                    className={`flex flex-col items-center p-2 cursor-pointer rounded-lg transition-all ${
+                    className={`flex flex-col cursor-pointer items-center  p-2 rounded-lg transition-all ${
                       selectedDate === d.date
                         ? "bg-[#14FFEC] text-gray-900 font-bold shadow-lg"
                         : "bg-gray-800 text-white hover:bg-gray-700"
@@ -109,7 +98,9 @@ export default function Registration() {
 
             {/* Time Selection */}
             <div>
-              <h2 className="font-bold mb-4 text-xl text-white">Select Time Slot</h2>
+              <h2 className="font-bold mb-4 text-xl text-white">
+                Select Time Slot
+              </h2>
               <div className="grid grid-cols-2  sm:grid-cols-3 gap-3">
                 {times.map((t) => (
                   <button
@@ -118,7 +109,7 @@ export default function Registration() {
                     onClick={() => toggleTime(t)}
                     className={`py-3 px-4 rounded-lg cursor-pointer transition-all ${
                       selectedTimes.includes(t)
-                        ? "bg-[#14FFEC] text-gray-900 font-bold"
+                        ? "bg-[#14FFEC] text-gray-900  font-bold"
                         : "bg-gray-800 text-white hover:bg-gray-700"
                     }`}
                   >
@@ -130,14 +121,16 @@ export default function Registration() {
 
             {/* Sports Selection */}
             <div>
-              <h2 className="font-bold mb-4 text-xl text-white">Select Sport</h2>
+              <h2 className="font-bold mb-4 text-xl text-white">
+                Select Sport
+              </h2>
               <div className="flex gap-4 flex-wrap">
                 {sports.map((sport) => (
                   <button
                     type="button"
                     key={sport.name}
                     onClick={() => setSelectedSport(sport.name)}
-                    className={`flex-1 flex items-center justify-center cursor-pointer gap-3 p-4 rounded-lg border transition-all min-w-[120px] ${
+                    className={`flex-1 flex items-center cursor-pointer justify-center gap-3 p-4 rounded-lg border transition-all min-w-[120px] ${
                       selectedSport === sport.name
                         ? "border-[#14FFEC] bg-[#14FFEC]/20"
                         : "border-gray-700 hover:border-[#14FFEC]"
@@ -156,11 +149,13 @@ export default function Registration() {
 
             {/* Players Selection */}
             <div>
-              <h2 className="font-bold mb-4 text-xl text-white">Number of Players</h2>
+              <h2 className="font-bold mb-4 text-xl text-white">
+                Number of Players
+              </h2>
               <div className="flex items-center border border-gray-700 rounded-lg w-fit overflow-hidden bg-gray-800">
                 <button
                   type="button"
-                  className="px-5 py-3 bg-gray-700 hover:bg-gray-600 cursor-pointer disabled:opacity-50 text-white text-xl"
+                  className="px-5 py-3 cursor-pointer bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-white text-xl"
                   onClick={decrement}
                   disabled={players <= minPlayers}
                 >
@@ -171,7 +166,7 @@ export default function Registration() {
                 </span>
                 <button
                   type="button"
-                  className="px-5 py-3 bg-gray-700 hover:bg-gray-600 cursor-pointer disabled:opacity-50 text-white text-xl"
+                  className="px-5 py-3 bg-gray-700 cursor-pointer hover:bg-gray-600 disabled:opacity-50 text-white text-xl"
                   onClick={increment}
                   disabled={players >= maxPlayers}
                 >
@@ -192,15 +187,6 @@ export default function Registration() {
           </form>
         </div>
       </main>
-
-      {/* Booking Success Popup */}
-      {showPopup.visible && (
-        <PaymentSuccessModal
-          isVisible={showPopup.visible}
-          onClose={() => setShowPopup(false)}
-          // bookingDetails={showPopup.details}
-        />
-      )}
     </div>
   );
 }

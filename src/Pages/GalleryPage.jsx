@@ -16,7 +16,7 @@ export default function GalleryPage() {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const sliderRef = useRef(null);
-
+  
   const next = () => setIndex((i) => i + 1);
   const prev = () => setIndex((i) => i - 1);
 

@@ -12,6 +12,7 @@ import LoginPage from './Pages/LoginPage';
 import SignupPage from './Pages/SignupPage';
 import Registration from './Pages/Registration';
 
+
 const MainContent = () => {
   return (
     <>
