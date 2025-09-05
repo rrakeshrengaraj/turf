@@ -7,7 +7,9 @@ import g5 from "../assets/g5.jpg";
 import g6 from "../assets/g6.jpg";
 import g7 from "../assets/g7.jpg";
 
+
 const images = [g1, g2, g3, g4, g5, g6, g7];
+
 export default function GalleryPage() {
   const slides = [images[images.length - 1], ...images, images[0]];
   const [index, setIndex] = useState(1);
